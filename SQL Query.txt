@@ -1,0 +1,13 @@
+-- merge DML for Oracle
+
+merge
+into tb_table x
+using ( select a.rowid as rid,
+               a.ac1,
+               a.ac2
+          from tb_table a
+       ) y
+on ( x.rowid = y.rid )
+when matched then
+update
+set x.ac1 = y.ac2;
